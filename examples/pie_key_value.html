@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="../style/style.css"/>
+    <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../sunshine.js"></script>
+  </head>
+<body>
+  <div id='chart' style='height:400px'></div>
+  
+  <script>
+    var data = [
+      {name:'alice', phone_calls:1}, 
+      {name:'bob', phone_calls:1}, 
+      {name:'carol', phone_calls:2}, 
+      {name:'dan', phone_calls:3}, 
+      {name:'eve', phone_calls:5}, 
+      {name:'frank', phone_calls:8}, 
+      {name:'gordon', phone_calls:5}
+    ];
+
+    chart = sunshine.pieChart({
+      key: function(d) { return d.name },
+      value: function(d) { return d.phone_calls }
+    })
+
+    d3.select("#chart").datum(data).call(chart)
+  </script>
+</body>
+</html>

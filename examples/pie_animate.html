@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="../style/style.css"/>
+    <script charset="utf-8" src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../sunshine.js"></script>
+  </head>
+<body>
+  <div id='chart' style='height:400px'></div>
+  
+  <script>
+    var data = [
+      {key:'a', value:1}, 
+      {key:'b', value:1}, 
+      {key:'c', value:2}, 
+      {key:'d', value:3}, 
+      {key:'e', value:5}, 
+      {key:'f', value:8}, 
+      {key:'g', value:5}
+    ];
+
+    var data2 = [
+      {key:'a', value:2}, 
+      {key:'b', value:1}, 
+      {key:'c', value:8}, 
+      {key:'d', value:2}, 
+      {key:'e', value:5}, 
+      {key:'f', value:1}, 
+      {key:'g', value:3}
+    ];
+
+    chart = sunshine.pieChart()
+
+    d3.select("#chart").datum(data).call(chart)
+
+    setTimeout(function() { 
+      d3.select("#chart").datum(data2).call(chart)
+    }, 1000)
+  </script>
+</body>
+</html>
