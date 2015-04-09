@@ -30,13 +30,53 @@
       {key:'g', value:3}
     ];
 
-    chart = sunshine.pieChart()
+    chart = sunshine.pieChart();
 
-    d3.select("#chart").datum(data).call(chart)
+    d3.select("#chart").datum(data).call(chart);
 
     setTimeout(function() { 
-      d3.select("#chart").datum(data2).call(chart)
+      d3.select("#chart").datum(data2).call(chart);
     }, 1000)
+    setTimeout(function() { 
+      chart.padAngle(0.1);
+      chart.redraw();
+    }, 2000)
+    setTimeout(function() { 
+      chart.padAngle(0.01);
+      chart.redraw();
+    }, 3000)
+    setTimeout(function() {
+      chart.transitionDuration(800);
+      chart.startAngle(-Math.PI/2);
+      chart.endAngle(Math.PI/2);
+      chart.redraw();
+    }, 4000)
+    setTimeout(function() {
+      chart.transitionDuration(300);      
+      d3.select("#chart").datum(data).call(chart);
+    }, 5000)
+    setTimeout(function() {
+      chart.filters(['a','c','e']);
+      chart.redraw();
+    }, 6000)
+    setTimeout(function() {
+      chart.transitionDuration(800);
+      chart.startAngle(-Math.PI);
+      chart.endAngle(Math.PI);
+      chart.redraw();
+    }, 7000)
+    setTimeout(function() {
+      chart.transitionDuration(300);
+      chart.filters([]);
+      chart.redraw();
+    }, 8000)
+    setTimeout(function() {
+      chart.transitionDuration(800);
+      chart.startAngle(0);
+      chart.endAngle(Math.PI*2);
+      chart.redraw();
+    }, 9000)
+    
   </script>
 </body>
 </html>

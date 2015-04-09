@@ -18,16 +18,6 @@
     }
     return otherwise;
   }
-  function build_proxy(original, proxy, fs) {
-    fs.forEach(function(f) {
-      var of = original[f];
-      proxy[f] = function(_) {
-        result = of.apply(original, arguments);
-        if (!arguments.length) return result;
-        return proxy;
-      };
-    });
-  }
   function pieChart(config) {
     "use strict";
     config = config || {};
@@ -89,7 +79,12 @@
       });
       path.exit().remove();
     }
+    chart.redraw = function() {
+      chart(_selection);
+    };
+    var _selection;
     function chart(selection) {
+      _selection = selection;
       selection.each(function(data) {
         if (!width) {
           width = this.offsetWidth;
@@ -113,6 +108,11 @@
       width = +_;
       return chart;
     };
+    chart.filters = function(_) {
+      if (!arguments.length) return filters;
+      filters = _;
+      return chart;
+    };
     chart.height = function(_) {
       if (!arguments.length) return height;
       height = +_;
@@ -125,7 +125,7 @@
     };
     chart.transitionDuration = function(_) {
       if (!arguments.length) return transitionDuration;
-      transition = +_;
+      transitionDuration = +_;
       return chart;
     };
     chart.labelRadius = function(_) {

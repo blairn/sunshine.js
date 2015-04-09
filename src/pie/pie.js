@@ -89,7 +89,14 @@ function pieChart(config) {
     path.exit().remove();
   }
   
+  chart.redraw = function() {
+    chart(_selection)
+  }
+  
+  var _selection;
+  
   function chart(selection) {
+    _selection = selection;
     // this is called with a datum, so... there is only one item.
     selection.each(function (data) {
       if (!width) {
@@ -113,15 +120,18 @@ function pieChart(config) {
     });
   }
 
-//  build_proxy(pie, chart, ['value', 'sort', 'startAngle', 'endAngle', 'padAngle']);
-//  build_proxy(arc, chart, ['innerRadius', 'outerRadius', 'cornerRadius', 'padRadius']);
-
   d3.rebind(chart, pie, 'value', 'sort', 'startAngle', 'endAngle', 'padAngle')
   d3.rebind(chart, arc, 'innerRadius', 'outerRadius', 'cornerRadius', 'padRadius')
   
   chart.width = function(_) {
     if (!arguments.length) return width;
     width = +_;
+    return chart;
+  };
+  
+  chart.filters = function(_) {
+    if (!arguments.length) return filters;
+    filters = _;
     return chart;
   };
 
@@ -139,7 +149,7 @@ function pieChart(config) {
   
   chart.transitionDuration = function(_) {
     if (!arguments.length) return transitionDuration;
-    transition = +_;
+    transitionDuration = +_;
     return chart;
   };
   

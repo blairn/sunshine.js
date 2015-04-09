@@ -21,11 +21,8 @@
     ];
 
     chart = sunshine.pieChart({
-      cornerRadius:2,
-      padAngle:0.01,
       startAngle: -Math.PI / 2,
-      endAngle: Math.PI / 2,
-      sort:null
+      endAngle: Math.PI / 2
     })
 
     d3.select("#chart").datum(data).call(chart)
