@@ -38,7 +38,8 @@
     "vows": "0.8"
   },
   "scripts": {
-    "test": "vows; echo"
+    "test": "vows; echo",
+    "build": "smash src/sunshine.js | uglifyjs -b indent-level=2 -o sunshine.js"
   },
   "licenses": [
     {
