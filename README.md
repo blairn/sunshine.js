@@ -1,3 +1,5 @@
+Abandoned, but, will be recreated again as a svelte library.
+
 # sunshine.js
 another charting library based on d3.js
 
